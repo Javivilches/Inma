@@ -28,11 +28,14 @@ h1 {
     flex-direction:column;
     gap:12px;
     margin-bottom:30px;
+
+    align-items:center;
 }
 
 .menu-vertical button{
 
     width:100%;
+max-width:500px;
 
     padding:16px;
 
@@ -381,7 +384,7 @@ respuestas:["B","B","B","C","C","B","C","C","B","C","B","C","B","B","B","B","B",
 function cargarAsignatura(nombre, boton) {
     asignaturaActual = nombre;
 
-    document.querySelectorAll(".menu button").forEach(b => b.classList.remove("activo"));
+    document.querySelectorAll(".menu-vertical button").forEach(b => b.classList.remove("activo"));
     boton.classList.add("activo");
 
     document.getElementById("mensajeInicio").style.display = "none";
