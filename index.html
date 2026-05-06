@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Promoción de la Salud</title>
+
+<style>
+body {
+    font-family: Arial;
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+}
+
+.pregunta {
+    margin-bottom: 25px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pregunta p {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    padding: 6px 0;
+    font-size: 16px;
+}
+
+input[type="radio"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+}
+
+.boton-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+button {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+}
+
+.resultado {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Test Promoción de la Salud</h1>
+
+<form id="test"></form>
+
+<div class="boton-container">
+    <button onclick="corregir()">Corregir examen</button>
+</div>
+
+<p class="resultado" id="resultado"></p>
+
+<script>
+const preguntas = [
+["La salud se define como:", ["A) Ausencia de enfermedad","B) Bienestar físico, mental y social","C) Solo bienestar físico","D) No tener dolor"]],
+["La OMS define salud como:", ["A) Estar sano físicamente","B) Equilibrio total","C) Bienestar completo","D) No tener enfermedades"]],
+["Un determinante de salud es:", ["A) Un medicamento","B) Un factor que influye en la salud","C) Un hospital","D) Una enfermedad"]],
+["¿Cuál es un determinante personal?", ["A) Medio ambiente","B) Estilo de vida","C) Hospital","D) Política"]],
+["El estilo de vida incluye:", ["A) Solo alimentación","B) Hábitos como ejercicio y dieta","C) Solo dormir","D) Medicación"]],
+["La prevención primaria consiste en:", ["A) Tratar enfermedades","B) Evitar que aparezcan","C) Diagnosticar","D) Curar"]],
+["La prevención secundaria:", ["A) Evita enfermedades","B) Detecta precozmente","C) Rehabilita","D) No existe"]],
+["La prevención terciaria:", ["A) Evita aparición","B) Diagnostica","C) Reduce secuelas","D) No actúa"]],
+["La educación para la salud busca:", ["A) Dar información","B) Cambiar hábitos","C) Solo enseñar","D) Curar"]],
+["Un hábito saludable es:", ["A) Fumar","B) Sedentarismo","C) Ejercicio físico","D) Estrés"]],
+["El sistema sanitario sirve para:", ["A) Vender medicamentos","B) Proteger la salud","C) Crear empleo","D) Enseñar"]],
+["La atención primaria:", ["A) Es hospitalaria","B) Es el primer contacto","C) No existe","D) Solo urgencias"]],
+["La atención especializada:", ["A) Es básica","B) Es en hospitales","C) Es primaria","D) No interviene"]],
+["Un factor ambiental es:", ["A) Dieta","B) Contaminación","C) Ejercicio","D) Sueño"]],
+["La promoción de la salud:", ["A) Cura enfermedades","B) Mejora la salud general","C) Solo previene","D) No influye"]],
+["El consumo de tabaco:", ["A) Es saludable","B) No afecta","C) Es un factor de riesgo","D) Es recomendable"]],
+["La alimentación saludable:", ["A) No importa","B) Influye en la salud","C) Solo es estética","D) Es opcional"]],
+["El sedentarismo:", ["A) Es positivo","B) No influye","C) Es un riesgo para la salud","D) Es obligatorio"]],
+["La salud mental:", ["A) No importa","B) Forma parte de la salud","C) Es secundaria","D) No se considera"]],
+["Un error en promoción de salud es:", ["A) Informar","B) Fomentar hábitos saludables","C) Ignorar la educación sanitaria","D) Prevenir"]]
+];
+
+const respuestas = ["B","C","B","B","B","B","B","C","B","C","B","B","B","B","B","C","B","C","B","C"];
+
+window.onload = function() {
+    const form = document.getElementById("test");
+
+    preguntas.forEach((p, i) => {
+        const div = document.createElement("div");
+        div.className = "pregunta";
+
+        let html = `<p>${i+1}. ${p[0]}</p>`;
+        p[1].forEach(op => {
+            const letra = op.charAt(0);
+            html += `<label><input type="radio" name="q${i}" value="${letra}"> ${op}</label>`;
+        });
+
+        div.innerHTML = html;
+        form.appendChild(div);
+    });
+};
+
+function corregir() {
+    let nota = 0;
+
+    preguntas.forEach((_, i) => {
+        const seleccion = document.querySelector(`input[name="q${i}"]:checked`);
+        if (seleccion && seleccion.value === respuestas[i]) {
+            nota++;
+        }
+    });
+
+    document.getElementById("resultado").innerText = `Resultado: ${nota}/20`;
+}
+</script>
+
+</body>
+</html>
