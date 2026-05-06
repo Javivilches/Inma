@@ -3,46 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Test Promoción de la Salud</title>
+<title>Test Farmacia</title>
 
 <style>
-body {
-    font-family: Arial;
-    max-width: 800px;
-    margin: auto;
+body { font-family: Arial; max-width: 900px; margin: auto; padding: 10px; }
+h1 { text-align: center; }
+
+.menu {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.menu button {
     padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #ddd;
+    cursor: pointer;
 }
 
-h1 {
-    text-align: center;
-    font-size: 22px;
+.menu button.activo {
+    background: #2563eb;
+    color: white;
 }
 
-.pregunta {
-    margin-bottom: 25px;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
+.pregunta { margin-bottom: 20px; padding: 10px; border-bottom: 1px solid #ddd; }
+.correcta { background: #d1fae5; }
+.incorrecta { background: #fee2e2; }
 
-.pregunta p {
-    font-weight: bold;
-}
+.respuesta-correcta { margin-top: 8px; font-weight: bold; color: #16a34a; }
 
-label {
-    display: block;
-    padding: 6px 0;
-    font-size: 16px;
-}
-
-input[type="radio"] {
-    transform: scale(1.2);
-    margin-right: 8px;
-}
-
-.boton-container {
-    text-align: center;
-    margin: 30px 0;
-}
+.boton-container { text-align: center; margin: 30px 0; }
 
 button {
     width: 100%;
@@ -59,55 +52,245 @@ button {
     text-align: center;
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 30px;
+    white-space: pre-line;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Test Promoción de la Salud</h1>
+<h1>Test Farmacia</h1>
+
+<div class="menu">
+<button onclick="cargarAsignatura('salud', this)">PROMOCIÓN DE LA SALUD</button>
+<button onclick="cargarAsignatura('empleabilidad', this)">ITINERARIO EMPLEABILIDAD</button>
+<button onclick="cargarAsignatura('emocional', this)">GESTIÓN EMOCIONAL</button>
+<button onclick="cargarAsignatura('dispensacion', this)">DISPENSACIÓN PRODUCTOS</button>
+<button onclick="cargarAsignatura('primeros', this)">PRIMEROS AUXILIOS</button>
+</div>
+
+<p id="mensajeInicio" style="text-align:center; font-size:18px; margin:40px 0;">
+Elige una asignatura para empezar el test
+</p>
 
 <form id="test"></form>
 
-<div class="boton-container">
-    <button onclick="corregir()">Corregir examen</button>
+<div class="boton-container" id="botonCorregir" style="display:none;">
+<button onclick="corregir()">Corregir</button>
 </div>
 
 <p class="resultado" id="resultado"></p>
 
 <script>
-const preguntas = [
-["La salud se define como:", ["A) Ausencia de enfermedad","B) Bienestar físico, mental y social","C) Solo bienestar físico","D) No tener dolor"]],
-["La OMS define salud como:", ["A) Estar sano físicamente","B) Equilibrio total","C) Bienestar completo","D) No tener enfermedades"]],
-["Un determinante de salud es:", ["A) Un medicamento","B) Un factor que influye en la salud","C) Un hospital","D) Una enfermedad"]],
-["¿Cuál es un determinante personal?", ["A) Medio ambiente","B) Estilo de vida","C) Hospital","D) Política"]],
-["El estilo de vida incluye:", ["A) Solo alimentación","B) Hábitos como ejercicio y dieta","C) Solo dormir","D) Medicación"]],
-["La prevención primaria consiste en:", ["A) Tratar enfermedades","B) Evitar que aparezcan","C) Diagnosticar","D) Curar"]],
-["La prevención secundaria:", ["A) Evita enfermedades","B) Detecta precozmente","C) Rehabilita","D) No existe"]],
-["La prevención terciaria:", ["A) Evita aparición","B) Diagnostica","C) Reduce secuelas","D) No actúa"]],
-["La educación para la salud busca:", ["A) Dar información","B) Cambiar hábitos","C) Solo enseñar","D) Curar"]],
-["Un hábito saludable es:", ["A) Fumar","B) Sedentarismo","C) Ejercicio físico","D) Estrés"]],
-["El sistema sanitario sirve para:", ["A) Vender medicamentos","B) Proteger la salud","C) Crear empleo","D) Enseñar"]],
-["La atención primaria:", ["A) Es hospitalaria","B) Es el primer contacto","C) No existe","D) Solo urgencias"]],
-["La atención especializada:", ["A) Es básica","B) Es en hospitales","C) Es primaria","D) No interviene"]],
-["Un factor ambiental es:", ["A) Dieta","B) Contaminación","C) Ejercicio","D) Sueño"]],
-["La promoción de la salud:", ["A) Cura enfermedades","B) Mejora la salud general","C) Solo previene","D) No influye"]],
-["El consumo de tabaco:", ["A) Es saludable","B) No afecta","C) Es un factor de riesgo","D) Es recomendable"]],
-["La alimentación saludable:", ["A) No importa","B) Influye en la salud","C) Solo es estética","D) Es opcional"]],
-["El sedentarismo:", ["A) Es positivo","B) No influye","C) Es un riesgo para la salud","D) Es obligatorio"]],
-["La salud mental:", ["A) No importa","B) Forma parte de la salud","C) Es secundaria","D) No se considera"]],
-["Un error en promoción de salud es:", ["A) Informar","B) Fomentar hábitos saludables","C) Ignorar la educación sanitaria","D) Prevenir"]]
-];
 
-const respuestas = ["B","C","B","B","B","B","B","C","B","C","B","B","B","B","B","C","B","C","B","C"];
+let asignaturaActual = "";
 
-window.onload = function() {
+const datos = {
+
+/* PROMOCIÓN SALUD */
+salud: {
+preguntas: [
+["La salud se define como:",["A) Ausencia de enfermedad","B) Bienestar físico, mental y social","C) Solo bienestar físico","D) No tener dolor"]],
+["La OMS define salud como:",["A) Estar sano físicamente","B) Equilibrio total","C) Bienestar completo","D) No tener enfermedades"]],
+["Un determinante de salud es:",["A) Un medicamento","B) Un factor que influye en la salud","C) Un hospital","D) Una enfermedad"]],
+["¿Cuál es un determinante personal?",["A) Medio ambiente","B) Estilo de vida","C) Hospital","D) Política"]],
+["El estilo de vida incluye:",["A) Solo alimentación","B) Hábitos como ejercicio y dieta","C) Solo dormir","D) Medicación"]],
+["La prevención primaria consiste en:",["A) Tratar enfermedades","B) Evitar que aparezcan","C) Diagnosticar","D) Curar"]],
+["La prevención secundaria:",["A) Evita enfermedades","B) Detecta precozmente","C) Rehabilita","D) No existe"]],
+["La prevención terciaria:",["A) Evita aparición","B) Diagnostica","C) Reduce secuelas","D) No actúa"]],
+["La educación para la salud busca:",["A) Dar información","B) Cambiar hábitos","C) Solo enseñar","D) Curar"]],
+["Un hábito saludable es:",["A) Fumar","B) Sedentarismo","C) Ejercicio físico","D) Estrés"]],
+["El sistema sanitario sirve para:",["A) Vender medicamentos","B) Proteger la salud","C) Crear empleo","D) Enseñar"]],
+["La atención primaria:",["A) Es hospitalaria","B) Es el primer contacto","C) No existe","D) Solo urgencias"]],
+["La atención especializada:",["A) Es básica","B) Es en hospitales","C) Es primaria","D) No interviene"]],
+["Un factor ambiental es:",["A) Dieta","B) Contaminación","C) Ejercicio","D) Sueño"]],
+["La promoción de la salud:",["A) Cura enfermedades","B) Mejora la salud general","C) Solo previene","D) No influye"]],
+["El consumo de tabaco:",["A) Es saludable","B) No afecta","C) Es un factor de riesgo","D) Es recomendable"]],
+["La alimentación saludable:",["A) No importa","B) Influye en la salud","C) Solo es estética","D) Es opcional"]],
+["El sedentarismo:",["A) Es positivo","B) No influye","C) Es un riesgo para la salud","D) Es obligatorio"]],
+["La salud mental:",["A) No importa","B) Forma parte de la salud","C) Es secundaria","D) No se considera"]],
+["Un error en promoción de salud es:",["A) Informar","B) Fomentar hábitos saludables","C) Ignorar la educación sanitaria","D) Prevenir"]],
+["¿Cuál es un ejemplo de prevención primaria?",["A) Rehabilitación","B) Vacunación","C) Tratamiento","D) Cirugía"]],
+["¿Cuál es un ejemplo de prevención secundaria?",["A) Evitar fumar","B) Vacunarse","C) Realizar un cribado","D) Rehabilitación"]],
+["La prevención terciaria tiene como objetivo:",["A) Evitar enfermedades","B) Detectarlas precozmente","C) Reducir secuelas","D) Diagnosticar"]],
+["Según la OMS, la salud mental:",["A) No forma parte","B) Es secundaria","C) Forma parte del bienestar","D) No influye"]],
+["¿Cuál NO es un determinante de salud?",["A) Biológico","B) Estilo de vida","C) Sistema sanitario","D) Marca de ropa"]],
+["Un factor de riesgo es:",["A) Mejora la salud","B) Aumenta probabilidad","C) Medicamento","D) Hospital"]],
+["La educación para la salud debe ser:",["A) Compleja","B) Clara y comprensible","C) Solo teórica","D) Obligatoria"]],
+["La promoción de la salud busca:",["A) Solo tratar","B) Mejorar calidad de vida","C) Solo diagnosticar","D) Evitar hospitales"]]
+],
+respuestas:["B","C","B","B","B","B","B","C","B","C","B","B","B","B","B","C","B","C","B","C","B","C","C","C","D","B","B","B"]
+},
+
+/* EMPLEABILIDAD (30) */
+empleabilidad: {
+preguntas: [
+["Un contrato de trabajo es:",["A) Sin salario","B) Por cuenta ajena y remunerado","C) Entre empresas","D) Opcional"]],
+["¿Cuál NO es característica?",["A) Remunerado","B) Personal","C) Dependiente","D) Independiente"]],
+["En trabajo por cuenta ajena:",["A) Trabajador asume riesgo","B) Empresario asume riesgo","C) No hay salario","D) Independiente"]],
+["Contrato indefinido:",["A) Duración fija","B) Sin fecha fin","C) Temporal","D) Sin derechos"]],
+["Contrato temporal:",["A) Sin causa","B) Con causa","C) Indefinido","D) Siempre corto"]],
+["Periodo de prueba:",["A) Siempre","B) Pactado","C) No termina","D) Obligatorio"]],
+["Durante prueba:",["A) No despedir","B) Sin indemnización","C) Indefinido","D) Sin salario"]],
+["Seguridad Social:",["A) Crear empleo","B) Proteger","C) Empresas","D) Contratar"]],
+["Afiliación:",["A) Opcional","B) Única","C) Cada contrato","D) Empresas"]],
+["Alta:",["A) Única","B) Inicio","C) Opcional","D) Permanente"]],
+["Cotiza:",["A) Trabajador","B) Empresa","C) Ambos","D) Nadie"]],
+["Prestaciones:",["A) Sin cotizar","B) Con cotizar","C) Gratis","D) No"]],
+["Contingencia común:",["A) Laboral","B) Enfermedad","C) Profesional","D) Grave"]],
+["Profesional:",["A) Gripe","B) Accidente","C) Resfriado","D) Dolor"]],
+["Incapacidad temporal:",["A) Permanente","B) Limitada","C) No","D) Voluntaria"]],
+["Incapacidad permanente:",["A) Siempre impide","B) Parcial o total","C) Temporal","D) No"]],
+["Despido:",["A) Solo uno","B) Solo otro","C) Varios","D) Igual"]],
+["Improcedente:",["A) Correcto","B) No justificado","C) Readmisión","D) Voluntario"]],
+["Nulo:",["A) Indemniza","B) Readmitir","C) Correcto","D) No"]],
+["Finiquito:",["A) Salario","B) Todo","C) Indemnización","D) Nada"]],
+["Suspensión:",["A) Despido","B) Pausa","C) Baja","D) Nuevo"]],
+["Traslado:",["A) Temporal","B) Permanente","C) Igual","D) No"]],
+["Desplazamiento:",["A) Permanente","B) Temporal","C) Indefinido","D) No"]],
+["Trabajo en equipo:",["A) Individual","B) Objetivo común","C) Sin roles","D) Desorden"]],
+["Conflicto:",["A) Personal","B) Varios","C) No","D) Negativo"]],
+["Asertiva:",["A) Agresiva","B) Pasiva","C) Clara","D) Evita"]],
+["Liderazgo democrático:",["A) Impone","B) No decide","C) Escucha","D) Autoritario"]],
+["Autoritario:",["A) Escucha","B) Decide","C) No manda","D) Pasivo"]],
+["Error equipo:",["A) Coordinar","B) Falta comunicación","C) Objetivos","D) Organizar"]],
+["Objetivo equipo:",["A) Solo","B) Objetivos comunes","C) Evitar","D) No"]]
+],
+respuestas:["B","D","B","B","B","B","B","B","B","B","C","B","B","B","B","B","C","B","B","B","B","B","B","B","B","C","C","B","B","B"]
+},
+
+/* GESTIÓN EMOCIONAL (30) */
+emocional:{
+preguntas:[
+["Una emoción es:",["A) Pensamiento","B) Respuesta del organismo","C) Voluntaria","D) Física"]],
+["Componentes:",["A) Físico","B) Mental","C) Tres","D) Ninguno"]],
+["Emoción básica:",["A) Culpa","B) Vergüenza","C) Miedo","D) Orgullo"]],
+["Secundarias:",["A) Innatas","B) Universales","C) Aprendidas","D) No"]],
+["Sistema límbico:",["A) Movimiento","B) Emociones","C) Digestión","D) Respiración"]],
+["Amígdala:",["A) Pensamiento","B) Peligro","C) Relaja","D) No"]],
+["Corteza:",["A) Impulso","B) Regula","C) Miedo","D) No"]],
+["Simpático:",["A) Relaja","B) Activa","C) No","D) Duerme"]],
+["Parasimpático:",["A) Estrés","B) Relaja","C) Miedo","D) No"]],
+["Estrés agudo:",["A) Malo","B) Útil","C) No","D) Permanente"]],
+["Estrés crónico:",["A) Bueno","B) Dañino","C) Corto","D) No"]],
+["Regulación:",["A) Eliminar","B) Controlar","C) Ignorar","D) Evitar"]],
+["ABC:",["A) Respiración","B) Situación","C) Medicación","D) Ejercicio"]],
+["Distorsión:",["A) Correcto","B) Error","C) Emoción","D) Reflejo"]],
+["Mindfulness:",["A) Pasado","B) Presente","C) Evitar","D) Controlar"]],
+["Inteligencia emocional:",["A) Saber","B) Gestionar","C) No","D) Estudiar"]],
+["Autoestima:",["A) Ven","B) Valoro","C) Actúo","D) Hablo"]],
+["Resiliencia:",["A) Evitar","B) Superar","C) Rendirse","D) Ignorar"]],
+["No adaptativa:",["A) Pensar","B) Calma","C) Impulsiva","D) Reflexionar"]],
+["STOP:",["A) Dormir","B) Parar","C) Comer","D) Trabajar"]],
+["Sistema autónomo:",["A) Uno","B) Otro","C) Ambos","D) Ninguno"]],
+["Dopamina:",["A) Dolor","B) Placer","C) Sueño","D) Miedo"]],
+["Serotonina:",["A) Ánimo","B) Movimiento","C) Digestión","D) Dolor"]],
+["GABA:",["A) Activa","B) Relaja","C) Excita","D) No"]],
+["Neuroplasticidad:",["A) Fijo","B) Cambia","C) No","D) Enfermedad"]],
+["Emoción intensa:",["A) Mejora","B) Dificulta","C) No","D) No"]],
+["Reprimir:",["A) Bien","B) Mal","C) No","D) Sí"]],
+["Regulación ayuda:",["A) Empeora","B) Mejora","C) Evita","D) No"]],
+["Adaptativa:",["A) Gritar","B) Reflexionar","C) Evitar","D) Ignorar"]],
+["Error:",["A) Pensar","B) Impulsiva","C) Controlar","D) Reflexionar"]]
+],
+respuestas:["B","C","C","C","B","B","B","B","B","B","B","B","B","B","B","B","B","B","C","B","C","B","A","B","B","B","B","B","B","B"]
+},
+
+/* DISPENSACIÓN (30) */
+dispensacion:{
+preguntas:[
+["Un medicamento es:",["A) Química","B) Trata","C) Alimento","D) Opcional"]],
+["Principio activo:",["A) Envase","B) Sustancia","C) Color","D) Sabor"]],
+["Excipiente:",["A) Cura","B) Terapia","C) Forma","D) No"]],
+["Forma farmacéutica:",["A) Precio","B) Presentación","C) Prospecto","D) Receta"]],
+["Vía:",["A) Oral","B) Caja","C) Marca","D) Precio"]],
+["Sublingual:",["A) Lenta","B) Rápida","C) Tópica","D) No"]],
+["Intravenosa:",["A) Lenta","B) Rápida","C) Local","D) No"]],
+["Tópica:",["A) General","B) Local","C) Inyectada","D) No"]],
+["Receta:",["A) Comprar","B) Autorizar","C) Pagar","D) Fabricar"]],
+["Receta válida:",["A) Nombre","B) Datos","C) Firma","D) Fecha"]],
+["Dispensación:",["A) Fabricar","B) Entregar","C) Transportar","D) Almacenar"]],
+["Uso racional:",["A) Libre","B) Correcto","C) Evitar","D) Auto"]],
+["Farmacovigilancia:",["A) Vender","B) Detectar","C) Fabricar","D) Distribuir"]],
+["Efecto adverso:",["A) Beneficio","B) No deseado","C) Principal","D) Esperado"]],
+["Cadena frío:",["A) No","B) Mantiene","C) Opcional","D) Alimentos"]],
+["Si se rompe:",["A) Nada","B) Pierde","C) Igual","D) Mejora"]],
+["FIFO:",["A) Último","B) Primero","C) Aleatorio","D) No"]],
+["Caducado:",["A) Sí","B) Igual","C) No usar","D) Potente"]],
+["Administración segura:",["A) Rápido","B) Correctos","C) No comprobar","D) No"]],
+["Correctos:",["A) Solo","B) Varios","C) Paciente","D) Dosis"]],
+["Error medicación:",["A) Dosis","B) Médico","C) Paciente","D) No"]],
+["Liberación:",["A) Rápida","B) Prolongada","C) Igual","D) No"]],
+["Comprimido:",["A) Triturar","B) No","C) Líquido","D) No"]],
+["Acondicionamiento primario:",["A) Caja","B) Envase","C) Prospecto","D) Etiqueta"]],
+["Secundario:",["A) Directo","B) Caja","C) Medicamento","D) Activo"]],
+["Residuo peligroso:",["A) Papel","B) Aguja","C) Cartón","D) Plástico"]],
+["Agujas:",["A) Basura","B) Reencapsular","C) Contenedor","D) Guardar"]],
+["Caducados:",["A) Basura","B) Punto","C) Guardar","D) Usar"]],
+["Automedicación:",["A) Mejora","B) Riesgos","C) Nada","D) Curación"]],
+["Prospecto:",["A) Decorar","B) Informar","C) Vender","D) Transportar"]]
+],
+respuestas:["B","B","C","B","A","B","B","B","B","B","B","B","B","B","B","B","B","C","B","B","A","B","B","B","B","B","C","B","B","B"]
+},
+
+/* PRIMEROS AUXILIOS (30) */
+primeros:{
+preguntas:[
+["Primeros auxilios:",["A) Hospital","B) Inmediata","C) Diagnóstico","D) Opcional"]],
+["Objetivo:",["A) Curar","B) Evitar","C) Medicación","D) Operar"]],
+["PAS:",["A) Parar","B) Proteger","C) Pensar","D) Asistir"]],
+["Primero:",["A) Socorrer","B) Avisar","C) Proteger","D) Actuar"]],
+["Emergencias:",["A) 911","B) 061","C) 112","D) 999"]],
+["PLS:",["A) Consciente","B) Inconsciente respira","C) No respira","D) Fiebre"]],
+["Parada:",["A) Respira","B) No respira","C) No respira ni responde","D) Mareo"]],
+["RCP:",["A) Ventilar","B) Comprimir","C) Ambos","D) Medicación"]],
+["Relación:",["A) 15:2","B) 30:2","C) 20:2","D) 10:1"]],
+["Compresiones:",["A) Lentas","B) Superficiales","C) Rápidas","D) Opcionales"]],
+["Hemorragia:",["A) Esperar","B) Presionar","C) Lavar","D) Ignorar"]],
+["Torniquete:",["A) Siempre","B) No","C) Extremo","D) Obligatorio"]],
+["Atragantamiento:",["A) Habla","B) No respira","C) Tos","D) No"]],
+["Heimlich:",["A) Desmayo","B) Atragantamiento","C) Fractura","D) Fiebre"]],
+["Quemadura:",["A) Hielo","B) Agua","C) Calor","D) Ignorar"]],
+["Fractura:",["A) Mover","B) Inmovilizar","C) Masajear","D) Ignorar"]],
+["Desmayo:",["A) Sangre","B) Falta riego","C) Golpe","D) Fiebre"]],
+["Ante desmayo:",["A) Levantar","B) Tumbar","C) Ignorar","D) Sentar"]],
+["Intoxicación:",["A) Vómito","B) Nada","C) Seguir","D) Leche"]],
+["Anafilaxia:",["A) Dolor","B) Grave","C) Mareo","D) Tos"]],
+["Ante anafilaxia:",["A) Esperar","B) Actuar","C) Ignorar","D) Dormir"]],
+["Picadura:",["A) Cortar","B) Limpiar","C) Rascar","D) Ignorar"]],
+["Golpe calor:",["A) Frío","B) Calor","C) Mareo","D) Nada"]],
+["Actuar calor:",["A) Abrigar","B) Enfriar","C) Ignorar","D) Dormir"]],
+["Botiquín:",["A) No","B) Completo","C) Vacío","D) Solo vendas"]],
+["Apoyo:",["A) Gritar","B) Tranquilizar","C) Ignorar","D) Alejar"]],
+["Error:",["A) Proteger","B) Avisar","C) Sin seguridad","D) Socorrer"]],
+["Herida:",["A) No limpiar","B) Limpiar","C) Ignorar","D) Rascar"]],
+["Correcto:",["A) Impulsiva","B) PAS","C) No avisar","D) Ignorar"]],
+["Error:",["A) Calma","B) No proteger","C) Avisar","D) Ayudar"]]
+],
+respuestas:["B","B","B","C","C","B","C","C","B","C","B","C","B","B","B","B","B","B","C","B","B","B","B","B","B","B","C","B","B","B"]
+}
+
+};
+
+function cargarAsignatura(nombre, boton) {
+    asignaturaActual = nombre;
+
+    document.querySelectorAll(".menu button").forEach(b => b.classList.remove("activo"));
+    boton.classList.add("activo");
+
+    document.getElementById("mensajeInicio").style.display = "none";
+    document.getElementById("botonCorregir").style.display = "block";
+
     const form = document.getElementById("test");
+    form.innerHTML = "";
+    document.getElementById("resultado").innerText = "";
+
+    const { preguntas } = datos[nombre];
 
     preguntas.forEach((p, i) => {
         const div = document.createElement("div");
         div.className = "pregunta";
+        div.id = "pregunta"+i;
 
         let html = `<p>${i+1}. ${p[0]}</p>`;
         p[1].forEach(op => {
@@ -118,20 +301,53 @@ window.onload = function() {
         div.innerHTML = html;
         form.appendChild(div);
     });
-};
+}
 
 function corregir() {
+    const { preguntas, respuestas } = datos[asignaturaActual];
     let nota = 0;
 
-    preguntas.forEach((_, i) => {
+    preguntas.forEach((p, i) => {
+        const div = document.getElementById("pregunta"+i);
         const seleccion = document.querySelector(`input[name="q${i}"]:checked`);
+
+        div.classList.remove("correcta","incorrecta");
+
         if (seleccion && seleccion.value === respuestas[i]) {
             nota++;
+            div.classList.add("correcta");
+        } else {
+            div.classList.add("incorrecta");
+        }
+
+        if (!div.querySelector(".respuesta-correcta")) {
+            const texto = p[1].find(op => op.startsWith(respuestas[i]));
+            const info = document.createElement("div");
+            info.className = "respuesta-correcta";
+            info.innerText = "Respuesta correcta: " + texto;
+            div.appendChild(info);
         }
     });
 
-    document.getElementById("resultado").innerText = `Resultado: ${nota}/20`;
+    let porcentaje = (nota / preguntas.length) * 100;
+    let mensaje = "";
+
+    if (porcentaje >= 90) {
+        mensaje = "🎉 ¡Enhorabuena! Lo tienes súper controlado. Si el examen es así, vas sobrada.";
+    } else if (porcentaje >= 75) {
+        mensaje = "💪 Muy bien, se nota que lo llevas trabajado. Un repasito más y te sales.";
+    } else if (porcentaje >= 60) {
+        mensaje = "👍 Vas bien, pero aún se te escapan algunas. Un empujón más y listo.";
+    } else if (porcentaje >= 40) {
+        mensaje = "😅 Casi… pero no. Tienes base, pero toca apretar un poco más.";
+    } else {
+        mensaje = "🚨 Uf… aquí hay que ponerse en serio. Poco a poco, que puedes mejorar mucho.";
+    }
+
+    document.getElementById("resultado").innerText =
+    `Resultado: ${nota}/${preguntas.length}\n\n${mensaje}`;
 }
+
 </script>
 
 </body>
