@@ -21,25 +21,64 @@ h1 {
 }
 
 /* MENÚ */
+/* MENÚ ASIGNATURAS */
+.menu-wrapper{
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/* degradado lateral para insinuar scroll */
+.menu-wrapper::after{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    width:40px;
+    height:100%;
+    background: linear-gradient(to right, rgba(255,255,255,0), #fff);
+    pointer-events:none;
+}
+
 .menu {
-    display: flex;
-    overflow-x: auto;
-    gap: 8px;
-    margin-bottom: 20px;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding-bottom:5px;
+
+    scroll-behavior:smooth;
+
+    /* ocultar barra */
+    scrollbar-width:none;
+}
+
+.menu::-webkit-scrollbar{
+    display:none;
 }
 
 .menu button {
-    padding: 10px 12px;
-    font-size: 14px;
-    border: none;
-    border-radius: 8px;
-    background: #ddd;
-    white-space: nowrap;
+
+    flex: 0 0 auto;
+
+    padding: 12px 16px;
+
+    border:none;
+    border-radius:999px;
+
+    background:#ececec;
+    color:#444;
+
+    font-size:14px;
+    font-weight:600;
+
+    white-space:nowrap;
+
+    transition:0.2s;
 }
 
 .menu button.activo {
-    background: #2563eb;
-    color: white;
+    background:#2563eb;
+    color:white;
+    transform:scale(1.03);
 }
 
 /* PREGUNTAS */
@@ -139,12 +178,16 @@ button {
 
 <h1>Test Farmacia</h1>
 
+<div class="menu-wrapper">
+
 <div class="menu">
-<button onclick="cargarAsignatura('salud', this)">PROMOCIÓN DE LA SALUD</button>
-<button onclick="cargarAsignatura('empleabilidad', this)">ITINERARIO EMPLEABILIDAD</button>
-<button onclick="cargarAsignatura('emocional', this)">GESTIÓN EMOCIONAL</button>
-<button onclick="cargarAsignatura('dispensacion', this)">DISPENSACIÓN PRODUCTOS</button>
-<button onclick="cargarAsignatura('primeros', this)">PRIMEROS AUXILIOS</button>
+<button onclick="cargarAsignatura('salud', this)">Promoción salud</button>
+<button onclick="cargarAsignatura('empleabilidad', this)">Itinerario empleabilidad</button>
+<button onclick="cargarAsignatura('emocional', this)">Gestión emocional</button>
+<button onclick="cargarAsignatura('dispensacion', this)">Dispensación</button>
+<button onclick="cargarAsignatura('primeros', this)">Primeros auxilios</button>
+</div>
+
 </div>
 
 <p id="mensajeInicio" style="text-align:center; font-size:18px; margin:40px 0;">
