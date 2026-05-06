@@ -21,68 +21,39 @@ h1 {
 }
 
 /* MENÚ */
-/* MENÚ ASIGNATURAS */
-.menu-wrapper{
-    position: relative;
-    margin-bottom: 25px;
-}
+/* MENÚ VERTICAL */
 
-/* degradado lateral para insinuar scroll */
-.menu-wrapper::after{
-    content:"";
-    position:absolute;
-    top:0;
-    right:0;
-    width:70px;
-    height:100%;
-    background: linear-gradient(to right, rgba(255,255,255,0), #fff);
-    pointer-events:none;
-}
-
-.menu {
+.menu-vertical{
     display:flex;
-    gap:6px;
-    overflow-x:auto;
-    padding-bottom:5px;
-
-    scroll-behavior:smooth;
-
-    /* ocultar barra */
-    scrollbar-width:none;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:30px;
 }
 
-.menu::-webkit-scrollbar{
-    display:none;
-}
+.menu-vertical button{
 
-.menu button {
+    width:100%;
 
-    flex: 0 0 auto;
-
-    padding: 10px 14px;
-
-    min-width: max-content;
+    padding:16px;
 
     border:none;
-    border-radius:999px;
+    border-radius:14px;
 
     background:#ececec;
-    color:#444;
+    color:#333;
 
-    font-size:13px;
+    font-size:16px;
     font-weight:600;
 
-    white-space:nowrap;
+    text-align:left;
 
     transition:0.2s;
 }
 
-.menu button.activo {
+.menu-vertical button.activo{
     background:#2563eb;
     color:white;
-    transform:scale(1.03);
 }
-
 /* PREGUNTAS */
 .pregunta {
     margin-bottom: 22px;
@@ -180,15 +151,27 @@ button {
 
 <h1>Test Farmacia</h1>
 
-<div class="menu-wrapper">
+<div class="menu-vertical">
 
-<div class="menu">
-<button onclick="cargarAsignatura('salud', this)">Promoción salud</button>
-<button onclick="cargarAsignatura('empleabilidad', this)">Itinerario empleabilidad</button>
-<button onclick="cargarAsignatura('emocional', this)">Gestión emocional</button>
-<button onclick="cargarAsignatura('dispensacion', this)">Dispensación</button>
-<button onclick="cargarAsignatura('primeros', this)">Primeros auxilios</button>
-</div>
+<button onclick="cargarAsignatura('salud', this)">
+🌱 Promoción de la salud
+</button>
+
+<button onclick="cargarAsignatura('empleabilidad', this)">
+💼 Itinerario de empleabilidad
+</button>
+
+<button onclick="cargarAsignatura('emocional', this)">
+🧠 Gestión emocional
+</button>
+
+<button onclick="cargarAsignatura('dispensacion', this)">
+💊 Dispensación de productos
+</button>
+
+<button onclick="cargarAsignatura('primeros', this)">
+🩺 Primeros auxilios
+</button>
 
 </div>
 
