@@ -6,22 +6,35 @@
 <title>Test Farmacia</title>
 
 <style>
-body { font-family: Arial; max-width: 900px; margin: auto; padding: 10px; }
-h1 { text-align: center; }
+body {
+    font-family: Arial;
+    max-width: 900px;
+    margin: auto;
+    padding: 12px;
+}
 
+/* Título */
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* MENÚ */
 .menu {
     display: flex;
     overflow-x: auto;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 20px;
 }
 
 .menu button {
-    padding: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
     border: none;
     border-radius: 8px;
     background: #ddd;
-    cursor: pointer;
+    white-space: nowrap;
 }
 
 .menu button.activo {
@@ -29,30 +42,95 @@ h1 { text-align: center; }
     color: white;
 }
 
-.pregunta { margin-bottom: 20px; padding: 10px; border-bottom: 1px solid #ddd; }
+/* PREGUNTAS */
+.pregunta {
+    margin-bottom: 22px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+/* Mejor lectura */
+.pregunta p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Opciones */
+label {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-size: 15px;
+}
+
+/* RADIO MÁS GRANDE */
+input[type="radio"] {
+    transform: scale(1.4);
+    margin-right: 10px;
+}
+
+/* CORRECCIÓN */
 .correcta { background: #d1fae5; }
 .incorrecta { background: #fee2e2; }
 
-.respuesta-correcta { margin-top: 8px; font-weight: bold; color: #16a34a; }
+.respuesta-correcta {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #16a34a;
+    font-size: 14px;
+}
 
-.boton-container { text-align: center; margin: 30px 0; }
+/* BOTÓN */
+.boton-container {
+    text-align: center;
+    margin: 30px 0;
+}
 
 button {
     width: 100%;
-    max-width: 300px;
-    padding: 15px;
+    max-width: 350px;
+    padding: 16px;
     font-size: 18px;
     border: none;
     background: #2563eb;
     color: white;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
+/* RESULTADO */
 .resultado {
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     white-space: pre-line;
+}
+
+/* 🔥 EXTRA SOLO MÓVIL */
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .menu button {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .pregunta p {
+        font-size: 15px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 17px;
+    }
 }
 </style>
 </head>
