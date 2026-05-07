@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Test Farmacia</title>
+<!-- Revisado manualmente: respuestas verificadas -->
 
 <style>
 body {
@@ -148,6 +149,22 @@ button {
     }
 }
 </style>
+
+
+<style>
+.menu-vertical button.boton-modelo{
+    background:#f3e6cf !important;
+    color:#3f3325 !important;
+    border:2px solid #dcc39a !important;
+}
+
+.menu-vertical button.boton-modelo.activo{
+    background:#d6b37a !important;
+    color:#2f2418 !important;
+    border:2px solid #b68b4f !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -155,6 +172,7 @@ button {
 <h1>Test Farmacia</h1>
 
 <div class="menu-vertical">
+
 
 <button onclick="cargarAsignatura('salud', this)">
 🌱 Promoción de la salud
@@ -175,6 +193,20 @@ button {
 <button onclick="cargarAsignatura('primeros', this)">
 🩺 Primeros auxilios
 </button>
+
+<button class="boton-modelo" onclick="cargarAsignatura('dispensacion_ejemplo', this)">
+🧪 Test ejemplo dispensación de productos
+</button>
+
+<button class="boton-modelo" onclick="cargarAsignatura('testemocional', this)">
+🧠 Test ejemplo gestión emocional
+</button>
+
+<button class="boton-modelo" onclick="cargarAsignatura('testipe', this)">💼 Test ejemplo itinerario empleabilidad</button>
+
+<button class="boton-modelo" onclick="cargarAsignatura('testfar', this)">🩹 Test ejemplo primeros auxilios</button>
+
+<button class="boton-modelo" onclick="cargarAsignatura('promosalud', this)">🩺 Test ejemplo promoción salud</button>
 
 </div>
 
@@ -538,6 +570,75 @@ preguntas:[
 respuestas:["B","A","B","B","A","B","B","B","A","A","B","A","B","B","A","D","B","B","B","B","A","A","B","B","A","A","B","A","A","A","B","B","B","B","C"]
 },
 
+
+/* TEST EJEMPLO DISPENSACIÓN DE PRODUCTOS (30) */
+dispensacion_ejemplo:{
+preguntas:[
+
+["¿Quién puede dar una receta médica?",["A) Un enfermero.","B) Un farmacéutico.","C) Cualquier persona.","D) Un médico."]],
+
+["¿Cuál es la principal diferencia entre medicamentos y productos parafarmacéuticos?",["A) Los medicamentos tratan enfermedades, los parafarmacéuticos mejoran la salud.","B) Ambos son lo mismo","C) Los medicamentos son más caros","D) Los parafarmacéuticos no se venden en farmacias"]],
+
+["El TSI 004 hace referencia:",["A) Funcionarios","B) Pensionistas","C) Parados","D) Trabajadores en activo con renta de 20000 euros"]],
+
+["En caso de receta de una entidad privada, ¿qué deberá hacer el farmacéutico?",["A) El paciente deberá abonar el 100% del precio.","B) El farmacéutico cobrará una parte de la receta","C) El farmacéutico devolverá la receta","D) No podrá dispensar el producto"]],
+
+["Un tipo de medicamento con prescripción especial es:",["A) Laxante","B) Calcio","C) Psicótropo","D) Analgésico"]],
+
+["Indica el principio activo que empleamos para la diabetes:",["A) Metformina","B) Enalapril","C) Quetiapina","D) Sertralina"]],
+
+["El último paso del proceso LADME es:",["A) Excreción","B) Metabolización","C) Absorción","D) Filtración"]],
+
+["El tiempo que transcurre entre la administración de una dosis y la siguiente se denomina:",["A) Dosis tóxica media","B) Dosis efectiva media","C) Periodo de latencia","D) Intervalo de administración"]],
+
+["Es la mayor dosis tolerada sin que aparezcan efectos tóxicos:",["A) Dosis terapéutica mínima","B) Dosis letal","C) Dosis terapéutica máxima","D) Todas las respuestas son falsas"]],
+
+["Indica el principio activo que utilizamos para la ansiedad:",["A) Diazepam","B) Desketoprofeno","C) Amoxicilina","D) Paracetamol"]],
+
+["¿Dónde se registran los psicótropos?",["A) Libro de estupefacientes","B) Libro recetario","C) Hoja clínica","D) No se registran"]],
+
+["¿Quién debe solicitar un medicamento fuera de la guía farmacoterapéutica?",["A) El médico responsable","B) El paciente","C) El técnico","D) El farmacéutico"]],
+
+["¿Qué caracteriza al sistema de distribución de dosis unitarias?",["A) Entrega por cajas completas de medicamentos","B) Medicación individualizada por paciente","C) Sin control","D) Uso en farmacia comunitaria"]],
+
+["¿Qué registro es obligatorio en estupefacientes?",["A) Solo receta","B) Ninguno","C) Libro de contabilidad de estupefacientes","D) Solo factura"]],
+
+["¿Qué documento permite la prescripción en el ámbito hospitalario con control especial?",["A) Receta médica","B) Informe clínico","C) Orden de dispensación hospitalaria","D) Vale de farmacia"]],
+
+["¿Qué papel tiene la dinamización en la preparación de medicamentos homeopáticos?",["A) Potencia el efecto según la teoría homeopática","B) Aumenta la concentración","C) Elimina impurezas","D) Reduce la toxicidad"]],
+
+["¿Qué ocurre con la concentración de la sustancia activa a medida que aumenta la dilución homeopática?",["A) Aumenta","B) Disminuye progresivamente","C) Se mantiene igual","D) Se vuelve tóxica"]],
+
+["¿Qué debe indicarse al paciente sobre la toma de homeopatía respecto a las comidas?",["A) Tomarlo solo con líquidos","B) Separarlo de comidas y bebidas","C) Tomarlo al terminar de comer","D) Tomarlo siempre con comida"]],
+
+["¿Por qué se recomienda no tocar los gránulos con las manos?",["A) Para evitar que se caigan","B) Porque son tóxicos","C) Para evitar contaminarlos o alterar su efecto","D) Por estética"]],
+
+["¿Cuál de los siguientes medicamentos homeopáticos tiene mayor “potencia” según la teoría homeopática?",["A) 15DH","B) 8DH","C) 4DH","D) 6DH"]],
+
+["La valeriana tiene función:",["A) Es digestiva","B) Es relajante","C) Aumenta las defensas","D) Es antiinflamatoria"]],
+
+["La equinácea tiene función:",["A) Es digestiva","B) Es antiinflamatoria","C) Es relajante","D) Aumenta las defensas"]],
+
+["La hiedra tiene una función:",["A) Calmante","B) Se emplea para la tos con mocos","C) No tiene propiedades terapéuticas","D) Relajante"]],
+
+["Los humanos generan:",["A) Únicamente metabolitos secundarios","B) Únicamente metabolitos primarios","C) Metabolitos primarios y secundarios","D) No generan metabolitos"]],
+
+["¿Qué es la fitoterapia?",["A) El uso de plantas medicinales con finalidad terapéutica","B) El uso de medicamentos sintéticos","C) El uso de vitaminas","D) El uso de productos homeopáticos"]],
+
+["En la leucemia felina se emplea como tratamiento:",["A) Antifúngicos","B) Antibióticos","C) Antivirales","D) Todas las respuestas son falsas"]],
+
+["¿Qué finalidad tiene la farmacovigilancia veterinaria?",["A) Mejorar ventas","B) Controlar precios","C) Detectar y evaluar efectos adversos en animales","D) Regular recetas"]],
+
+["Un pienso medicamentoso está formado por:",["A) Únicamente por premezcla medicamentosa","B) Premezcla medicamentosa y pienso","C) Todas las respuestas son falsas","D) Únicamente por pienso"]],
+
+["¿Quién es el único profesional autorizado para prescribir medicamentos veterinarios sujetos a receta?",["A) Veterinario colegiado","B) Auxiliar clínico","C) Médico colegiado","D) Farmacéutico"]],
+
+["Un medicamento bactericida:",["A) Elimina bacterias","B) Hace que las bacterias no se reproduzcan","C) Elimina virus","D) Elimina hongos"]]
+
+],
+respuestas:["D","A","D","A","C","A","A","D","C","A","B","A","B","C","C","A","B","B","C","A","B","D","B","C","A","C","C","B","A","A"]
+},
+
 /* PRIMEROS AUXILIOS (40) */
 primeros:{
 preguntas:[
@@ -625,6 +726,246 @@ preguntas:[
 ],
 respuestas:["B","B","A","C","C","B","B","C","C","B","B","B","B","B","B","B","B","B","B","B","B","A","B","B","B","B","B","A","A","B","B","C","C","B","B","B","B","A","B","B"]
 },
+
+
+/* TEST EJEMPLO GESTION EMOCIONAL (20) */
+testemocional:{
+preguntas:[
+
+["Identifica la estructura que aparece señalada en la imagen:",["A) Hipotálamo.","B) Hipocampo.","C) Amígdala.","D) Giro cingulado."]],
+
+["Qué neurotransmisor es conocido como el \"químico de la recompensa y motivación\"?",["A) Oxitocina.","B) Serotonina.","C) Dopamina.","D) Acetilcolina."]],
+
+["Un encargado nota que, tras una reunión de equipo donde se han escuchado y apoyado mutuamente, el ambiente de tensión ha disminuido y la confianza ha aumentado.\n\n¿Qué sustancia, conocida como la “hormona del amor y la confianza”, se libera en estas interacciones sociales positivas?",["A) Noradrenalina.","B) Cortisol.","C) Anandamida.","D) Oxitocina."]],
+
+["Señala la opción INCORRECTA en relación e las células gliales:",["A) Son las transmisoras de las señales nerviosas.","B) Son las células de soporte del sistema nervioso.","C) En ellas no se sintetizan los neurotransmisores.","D) Forman la capa de mielina que recubre los axones."]],
+
+["Cuando las áreas visuales asumen funciones auditivas en personas ciegas, se conoce como plasticidad:",["A) Estructural.","B) Funcional.","C) Desestructurada.","D) Arrítmica."]],
+
+["Según qué teoría, la emoción es la interpretación de las respuestas fisiológicas:",["A) Teoría evolucionista de C. Darwin.","B) Teoría de Cannon-Bard.","C) Teoría de James-Lange.","D) Teoría del Feedback Facial."]],
+
+["La experiencia interna forma parte del:",["A) Componente conductual de la emoción.","B) Componente introspectivo de la emoción.","C) Componente fisiológico de la emoción.","D) Componente subjetivo de la emoción."]],
+
+["Según la teoría de Canon-Bard:",["A) Las emociones tienen una función adaptativa para la supervivencia.","B) La emoción es la excitación fisiológica y la interpretación cognitiva del contexto.","C) La emoción es la interpretación de las respuestas fisiológicas.","D) La emoción y la respuesta fisiológica ocurren simultáneamente."]],
+
+["El objetivo final de la gestión emocional NO es:",["A) Regular la intensidad de la emoción.","B) Dejar de sentir emociones negativas para siempre.","C) Elegir la respuesta conductual más adecuada.","D) Adaptarse mejor al entorno."]],
+
+["Las emociones complejas o secundarias (como la culpa o el orgullo) se diferencian de las básicas en que:",["A) Son innatas y universales.","B) Aparecen en los primeros meses de vida.","C) Son aprendidas socialmente y varían según la cultura.","D) No provocan ninguna reacción física."]],
+
+["Señala la afirmación INCORRECTA en relación a los valores personales:",["A) Se forman a partir de la educación, experiencias y entorno.","B) Son individuales.","C) Son comunes a muchas profesiones.","D) Influyen en la autoestima y en la coherencia personal."]],
+
+["¿Cuál de los siguientes factores puede influir en la autoestima?",["A) Expectativas personales y profesionales.","B) Todos los factores expuestos pueden influir en la autoestima.","C) Entorno social y laboral (familia, compañeros, superiores).","D) Experiencias personales (éxitos y fracasos)."]],
+
+["¿Cuál de las siguientes es una característica del portafolio personal?",["A) Es personal, reflexivo, de carácter formativo y evoluciona con el tiempo.","B) Es un requisito legal obligatorio para trabajar en el sector de la construcción o la sanidad.","C) Debe ser redactado exclusivamente por terceros para garantizar la objetividad.","D) Es un documento estático que no cambia una vez finalizados los estudios."]],
+
+["Señala la afirmación correcta:",["A) El Síndrome del Impostor se asocia a una autoestima inflada.","B) Una autoestima baja puede estar asociada al Síndrome del Impostor.","C) Una autoestima inflada puede estar asociada al Síndrome del Impostor.","D) Una autoestima saludable puede estar asociada al Trastorno Narcisista de la personalidad."]],
+
+["Señala la opción INCORRECTA para una persona con una autoestima profesional saludable:",["A) Se enfoca en el aprendizaje continuo.","B) Evita responsabilidades.","C) Reconoce fortalezas y errores.","D) Acepta críticas constructivas."]],
+
+["Ante una situación crítica un trabajador siente que su ritmo cardíaco aumenta y su respiración se acelera, lo que podría afectar a su precisión técnica. Decide aplicar la técnica de la Respiración Táctica (Box Breathing) para recuperar el control.\n\nDe acuerdo con la técnica del \"cuadrado\", ¿cuál es la secuencia correcta que debe seguir el técnico para activar su sistema parasimpático?",["A) Inhalar profundamente durante 10 segundos y soltar el aire lo más rápido posible.","B) Inhalar por la nariz en 4 segundos, mantener 4 segundos, exhalar por la boca en 4 segundos y mantener sin aire 4 segundos.","C) Inhalar en 4 segundos y exhalar inmediatamente en 8 segundos para vaciar los pulmones.","D) Mantener la respiración durante 20 segundos seguidos para forzar la bajada de pulsaciones."]],
+
+["Alejarse del problema y dejar que otros decidan es una respuesta:",["A) Impulsiva.","B) Evitativa.","C) Analítica.","D) De bloqueo."]],
+
+["En un entorno laboral saludable:",["A) Sólo surgen conflictos cuando se trabaja en Atención al Público.","B) Sólo surgirán conflictos cuando se trabaje bajo presión.","C) Los conflictos son evitables.","D) Los trabajadores saben gestionar los conflictos de forma adecuada."]],
+
+["La gestión emocional en el ámbito laboral:",["A) Mejora la comunicación.","B) Aumenta la confianza y el respeto mutuo.","C) Facilita la resolución de conflictos.","D) Todas las opciones son correctas."]],
+
+["¿En qué consiste la técnica del 'reencuadre cognitivo'?",["A) Cambiar de puesto de trabajo cada vez que surge un conflicto serio.","B) Repetir frases positivas, aunque no se crea en ellas.","C) Olvidar los errores cometidos para no sentirse culpable.","D) Cambiar la perspectiva sobre una situación estresante para verla de forma más constructiva."]]
+
+],
+respuestas:["C","C","D","A","B","C","D","D","B","C","C","B","A","B","B","B","B","D","D","D"]
+},
+
+testipe:{
+preguntas:[
+
+["Según la naturaleza del producto o servicio, las empresas se pueden clasificar en:",["A) Individual o sociedad","B) Comerciales, de servicios, industriales","C) Microempresa, PYMEs, empresa grande","D) Públicas, privadas, mixtas"]],
+
+["Una empresa que tiene 270 trabajadores, es una empresa:",["A) Mediana","B) Grande","C) Microempresa","D) Pequeña"]],
+
+["Los impuestos que tienen que pagar las Comunidades de bienes son:",["A) Ninguna es correcta","B) IRPF e IVA","C) IRPF e IS","D) IRPF e ICIO"]],
+
+["Para constituir una empresa, tenemos que llevar a cabo una burocracia antes de iniciar la actividad. ¿Dónde tenemos que tramitar la licencia de actividades e instalaciones y la licencia de obras?",["A) Ministerio de Empleo y Seguridad Social","B) Ministerio de Hacienda y Administraciones Públicas","C) Ayuntamiento","D) Registro Mercantil"]],
+
+["¿En qué fase del proceso de selección se analizan las tareas y se describen las funciones de los puestos de trabajo?",["A) Fase central","B) Esta tarea no se realiza en un proceso de selección.","C) Fase final","D) Fase previa"]],
+
+["¿Cuál es la diferencia entre un equipo de trabajo y un grupo de trabajo?",["A) El equipo de trabajo es más numeroso que el grupo de trabajo.","B) En un equipo de trabajo el éxito o fracaso es individual, mientras que en un grupo de trabajo, si fracasa uno, fracasan todos.","C) En un grupo de trabajo se trabaja para lograr objetivos individuales, mientras que en un equipo de trabajo, los objetivos son compartidos.","D) Son lo mismo"]],
+
+["En los equipos de trabajo podemos identificar muchos roles que pueden desempeñar los miembros del equipo. ¿Cuál de las siguientes opciones es un rol orientado a las relaciones sociales?",["A) Impulsor","B) Dominador","C) Coordinador","D) Creador"]],
+
+["¿Cuál de las siguientes competencias personales y sociales permite recuperarte de los fracasos y aprender de ellos?",["A) Resiliencia","B) Adaptabilidad","C) Autoconfianza","D) Trabajo en equipo"]],
+
+["¿Qué conflicto se producirá cuando más de una persona necesita utilizar el mismo recurso?",["A) Conflicto de recursos","B) Conflicto por diferencias en los valores personales","C) Conflicto de intereses","D) Conflicto por presión"]],
+
+["¿Cuáles son los elementos clave que harán que la comunicación sea efectiva?",["A) Escucha activa","B) Profesionalidad","C) Todas son correctas","D) Formalidad"]],
+
+["¿A qué llamamos emprendedor?",["A) Ninguna es correcta.","B) Alguien que trabaja para otra persona.","C) Una persona con la capacidad de organizar recursos y asumir riesgos.","D) Una persona que evita asumir riesgos en su carrera."]],
+
+["¿Cuál de los siguientes ejemplos representa innovación tecnológica en el sector hotelero?",["A) Reducir el personal de atención al cliente","B) Aumentar la cantidad de habitaciones","C) Ofrecer desayuno incluido","D) Reservar habitaciones a través de Internet"]],
+
+["¿Qué habilidad personal es fundamental para un emprendedor al convertir una idea en un producto de éxito en el mercado?",["A) Creatividad","B) Conocimiento técnico","C) Competitividad","D) Coordinación"]],
+
+["¿Qué tipo de innovación consideramos la siguiente afirmación? “Henry Ford simplificó el ensamblaje de las 3.000 piezas que tenía el coche Ford T, separándolo en 84 pasos distintos”.",["A) Innovación de producto","B) Innovación total","C) Innovación de proceso","D) Innovación tecnológica"]],
+
+["¿Qué aspecto debe priorizar una empresa tecnológica en su estrategia de sostenibilidad?",["A) Aumentar los costos de producción","B) Reducción del consumo de energía en centros de datos","C) Desarrollar campañas publicitarias masivas","D) Mantenerse alejada de los avances tecnológicos"]],
+
+["Las empresas que perduran en el tiempo son…",["A) las que más facturan","B) las que mejor se adaptan a su entorno","C) las que tienen más trabajadores","D) las más grandes"]],
+
+["¿Cuál de las siguientes variables pertenece al macroentorno?",["A) Clientes","B) Proveedores","C) Competidores","D) Inflación"]],
+
+["Al combinar los principios de _________ con los de __________, se puede desarrollar un modelo económico y social que priorice la equidad y la sostenibilidad. Por ejemplo, una empresa diseña productos duraderos y reparables a la vez que asegura una buenas condiciones laborales y fomenta la inclusión social.",["A) Economía del bien común y economía circular","B) Economía del bien común / Economía tradicional","C) Economía circular / sostenibilidad","D) Economía circular / Economía lineal"]],
+
+["Si nos preguntamos qué necesidades se pretenden cubrir con nuestra idea de negocio, estaremos…",["A) Concretando qué tipo de mercado queremos cubrir.","B) Analizando las capacidades y los recursos del emprendedor, junto a la forma de aplicarlos para conseguir beneficios.","C) Ninguna respuesta es correcta.","D) Delimitando el campo de actuación empresarial y la forma de llevarlo a cabo."]],
+
+["La organización vertical se basa en:",["A) el orden jerárquico","B) Ninguna es correcta","C) la especialización","D) el reparto de trabajo"]],
+
+["Una empresa es solvente cuando el ratio de liquidez total o solvencia es…",["A) mayor que 5","B) menor que 0","C) entre 0 y 1","D) entre 1 y 2"]],
+
+["¿Cuál de las siguientes opciones es un gasto variable?",["A) Electricidad consumida en la oficina de recursos humanos","B) Seguros","C) Electricidad que consumen las máquinas de producción","D) Alquiler del local"]],
+
+["El plan de tesorería, la cuenta de resultados, el balance y el punto muerto forman parte del:",["A) Plan operativo","B) Plan de marketing","C) Plan de crecimiento","D) Plan económico-financiero"]],
+
+["En el Design Thinking, ¿cómo podemos detectar las necesidades del público?",["A) Con la observación directa.","B) Escuchando a las personas.","C) Todas son correctas.","D) Analizando datos como estadísticas de pobreza, informes de sostenibilidad o estudios sobre el cambio climático."]],
+
+["¿Cuáles son las 5 fases del Design Thinking?",["A) Empatizar, definir, idear, analizar y testear","B) Empatizar, analizar, estudiar, prototipar y testear","C) No existen fases","D) Empatizar, definir, idear, prototipar y testear"]]
+
+],
+respuestas:["B","A","B","C","D","C","C","A","A","C","C","D","A","C","B","B","D","A","D","A","D","C","D","C","D"]
+},
+
+testfar:{
+preguntas:[
+
+["Cuando pasa el mismo espacio de tiempo entre las contracciones cardíacas se llama:",["A) Pulso rítmico","B) Bradicardia","C) Taquicardia","D) Pulso irregular"]],
+
+["Señala la respuesta INCORRECTA sobre la conducta PAS:",["A) La llamada al 112 consiste en informar al sistema de emergencias del máximo de información posible sobre el accidente","B) Proteger consiste en asegurarnos de que el lugar del accidente no sea peligroso","C) En primer lugar se debe socorrer","D) La conducta PAS significa: “proteger, avisar y socorrer”"]],
+
+["Las aurículas:",["A) Son los compartimentos inferiores del corazón por donde salen las arterias","B) Son los compartimentos superiores del corazón a los que llegan las venas","C) Son los compartimentos superiores del corazón a los que llegan las arterias","D) Son los comportamientos inferiores del corazón por donde salen las venas"]],
+
+["El plano frontal:",["A) Divide el cuerpo en dos mitades simétricas: izquierda y derecha","B) Divide el cuerpo en una parte superior e inferior","C) Divide el cuerpo en una parte craneal y caudal","D) Divide el cuerpo en una parte anterior y posterior"]],
+
+["Las personas formadas específicamente en primeros auxilios tienen la obligación de intervenir en caso de una situación de urgencia o emergencia, esta definición corresponde con:",["A) Principio de riesgo calculado","B) Deber de socorro","C) Altruismo","D) Deber de solidaridad"]],
+
+["La escala de Glasgow valora:",["A) Apertura ocular, respuesta verbal y respuesta motora","B) Apertura ocular","C) Respuesta verbal y motora","D) Respuesta motora"]],
+
+["Las células sanguíneas que tienen función defensiva ya que destruyen o anulan diferentes agentes nocivos que penetran en el organismo; se denominan:",["A) Leucocitos","B) Plaquetas","C) Eritrocitos","D) Glóbulos rojos"]],
+
+["La definición de: “Sensación de elevación de la pared de las arterias que se puede sentir al tacto si se presiona una arteria sobre un hueso” hace referencia a:",["A) Respiración","B) Temperatura","C) Pulso","D) Tensión arterial"]],
+
+["En cuanto a los principios básicos del SEM, la asistencia continuada se refiere a:",["A) La atención debe prestarse tan rápidamente como sea posible","B) Ninguna respuesta es correcta","C) La atención prehospitalaria no es necesario continuarla","D) Todas las personas pueden acceder a estos servicios"]],
+
+["La puntuación de menos de 9 en la escala de Glasgow significa:",["A) Buen estado de salud","B) Puntuación normal","C) Estado de gravedad","D) Coma profundo"]],
+
+["El síndrome que se caracteriza por la sensación de un inminente desmayo con síntomas pero sin pérdida de consciencia se denomina:",["A) Lipotimia","B) Síncope","C) Sopor","D) Hipoglucemia"]],
+
+["En RCP, el ritmo de las compresiones es:",["A) 10 compresiones por minuto","B) 150 compresiones por minuto","C) 30 compresiones por minuto","D) 100 compresiones por minuto"]],
+
+["El primer paso en el SVB es:",["A) Realizar la RCP","B) Colocarlo en PLS","C) Comprobar si respira","D) Verificar la consciencia"]],
+
+["El tipo de hemorragia que se define como “la sangre sale al exterior a través de la piel”, corresponde a:",["A) Hemorragia externa","B) Hemorragia interna","C) Hemorragia moderada","D) Hemorragia venosa"]],
+
+["La quemadura de primer grado se caracteriza por:",["A) La zona se encuentra enrojecida y afecta a la epidermis","B) Afectar a la epidermis y la dermis","C) Aparición de flictenas y aspecto húmedo","D) Afecta también a la hipodermis"]],
+
+["El protocolo RCP en niños se basa en:",["A) Ninguna respuesta es correcta","B) 20 compresiones y 2 insuflaciones","C) 15 compresiones y 5 insuflaciones","D) 30 compresiones y 2 insuflaciones"]],
+
+["Si la víctima está consciente pero no puede hablar ni toser porque se está asfixiando, el primer paso que hay que realizar es:",["A) Realizar la maniobra de Heimlich","B) Dar 5 palmadas interescapulares","C) Llevarla a urgencias","D) Animar a la víctima a toser"]],
+
+["Se recomienda dar al paciente alimentos ricos en azúcar si tiene un cuadro de:",["A) Hipoglucemia","B) Hipertensión","C) Hipotensión","D) Hiperglucemia"]],
+
+["Una de las causas de inconsciencia puede ser:",["A) Intoxicación etílica","B) Hipoglucemia","C) Síncope","D) Todas las respuestas son correctas"]],
+
+["Si una víctima tiene una temperatura inferior a 26.7ºC indica:",["A) Hipotermia grave","B) Todas las respuestas son correctas","C) Hipotermia leve","D) Hipotermia moderada"]],
+
+["¿Cuál es el método de vendaje utilizado para vendar e inmovilizar articulaciones?",["A) Vendaje en ocho","B) Vendaje circular","C) Vendaje en espiga","D) Vendaje en espiral"]],
+
+["¿Cuál es la posición de seguridad recomendada para una persona inconsciente que no presenta traumatismos pero tiene estabilidad en la respiración y el pulso?",["A) Decúbito supino","B) Fowler bajo","C) Posición de Trendelenburg","D) Posición Lateral de Seguridad (PLS)"]],
+
+["Indica la respuesta FALSA sobre la maniobra de Rautek:",["A) Se usará siempre que presenciemos un accidente de tráfico","B) El primer paso es retirar el cinturón de seguridad en caso de que lo lleve puesto.","C) Se utiliza para mantener el eje cabeza-cuello-tronco alineado","D) Se utiliza para extraer a un accidentado del interior de un vehículo"]],
+
+["La posición de Fowler es una posición de seguridad y espera adecuada para:",["A) Traumatismos craneoencefálicos","B) Hipotensión o hipoglucemia","C) Lipotimias y shock","D) Problemas respiratorios y cardíacos"]],
+
+["El último paso para colocar a una persona en Posición Lateral de Seguridad (PLS) es:",["A) Colocar el dorso de la mano del lado externo bajo la mejilla","B) Colocar a la persona en decúbito supino","C) Flexionar el brazo del lado interno para formar un ángulo recto y dejar la pierna del lado interno recta","D) Girar el cuerpo hasta que quede de lado"]],
+
+["La posición de Fowler es una posición de seguridad y espera adecuada para:",["A) Fractura en extremidades inferiores","B) Lipotimia","C) Traumatismo craneoencefálico","D) Problemas respiratorios y cardíacos"]],
+
+["¿Cuál es el material de inmovilización adecuado para limitar el movimiento del cuello y evitar daños en la región cervical?",["A) Tablero espinal","B) Collarín cervical","C) Férula","D) Colchón de vacío"]],
+
+["¿Cuál de las siguientes opciones es un método de traslado?",["A) Vendaje en ocho","B) Posición Lateral de Seguridad (PLS)","C) Método del bombero","D) Técnica “en bandeja”"]],
+
+["¿Cuál es el objetivo de la valoración primaria en primeros auxilios?",["A) Evaluar y atender las constantes vitales de la víctima","B) Determinar el estado de consciencia de la víctima","C) Buscar y evaluar otras posibles lesiones","D) Comprobar si hay lesiones que ocasionen peligro de muerte"]],
+
+["El tipo de vendaje que se utiliza para vendar e inmovilizar articulaciones es:",["A) Vendaje recurrente","B) Vendaje circular","C) Vendaje en ocho","D) Vendaje en espiga"]],
+
+["La etapa del duelo caracterizada porque la persona comienza a entender la realidad, desaparece el estado de confusión pero se encuentra en un estado de tristeza es:",["A) Aceptación","B) Negociación","C) Depresión","D) Negación"]],
+
+["Las técnicas de relajación consisten en:",["A) Controlar nuestras respuestas emocionales y comportamientos","B) Hablar con otras personas","C) Aprender a desactivar el sistema nervioso simpático y potenciar el sistema nervioso parasimpático","D) Realizar registros escritos para confrontar los pensamientos irracionales con la realidad actual"]],
+
+["¿Cuál de los siguientes factores estresores es un factor personal?",["A) El ruido","B) El estrés laboral","C) Todas las opciones son factores personales","D) La falta de recursos económicos"]],
+
+["¿Qué fase del trauma se caracteriza por una reacción aguda de estrés?",["A) Fase de procesamiento y reparación","B) Fase de reorientación","C) Fase de impacto o shock","D) Fase de reacción"]],
+
+["¿Qué es la empatía?",["A) Expresar opiniones personales","B) Comprender lo que está sintiendo la otra persona","C) Actuar con indiferencia","D) Ignorar los sentimientos de los demás"]],
+
+["¿Cuál es una técnica de apoyo psicológico en situaciones de emergencia?",["A) Competencia","B) Culpa","C) Escucha activa","D) Crítica"]],
+
+["Respecto a las estrategias de autocontrol, identificar las limitaciones o puntos débiles que tenemos cada uno, pertenece a la estrategia de:",["A) Informarse sobre el suceso","B) Búsqueda de alternativas","C) Conocerse a uno mismo","D) Mejora de la organización"]],
+
+["¿Qué tipo de intervención proporciona una ayuda breve e inmediata de apoyo para restablecer la estabilidad emocional?",["A) Apoyo psicológico a largo plazo","B) Terapia holística","C) PPAA psicológicos","D) Intervención psiquiátrica"]],
+
+["¿Cuál de las siguientes opciones NO es una correcta actuación del socorrista/auxiliador?",["A) Mantener la calma","B) Actuar con preocupación y estrés","C) Brindar apoyo emocional","D) Evaluar la situación"]],
+
+["Señala cuál de las siguientes respuesta NO corresponde a una correcta actuación del socorrista/auxiliador:",["A) Actuar con preocupación y estrés","B) Conocer las posibilidades técnicas y materiales","C) Activar los sistemas de asistencia","D) Valorar si la situación es vital o no"]]
+
+],
+respuestas:["A","C","B","D","B","A","A","C","B","D","A","D","D","A","A","D","D","A","D","A","A","D","A","D","D","D","B","C","D","C","C","C","D","C","B","C","C","C","B","A"]
+},
+
+promosalud:{
+preguntas:[
+
+["Los valores normales de frecuencia cardíaca son:",["A) 60-80 lpm","B) 50-60 lpm","C) menos de 60 lpm","D) Más de 100 lpm"]],
+
+["La contaminación atmosférica, la existencia de radiaciones o altos niveles de ruidos afectan al determinante de salud:",["A) Estilo de vida","B) Sistema sanitario","C) Biología humana","D) Medio ambiente"]],
+
+["En relación con los determinantes de la salud, las conductas de consumo de alcohol, hábito tabáquico y poca práctica de actividad física se engloban en:",["A) Sistema Sanitario","B) Biología humana","C) Estilo de vida","D) Medio ambiente"]],
+
+["¿Qué nombre reciben los factores que afectan a la salud de las personas que se clasifican en “biología humana”, \"estilo de vida”, “medio ambiente” y “sistema sanitario”?",["A) Factores vitales","B) Tipos Lalonde","C) Características esenciales","D) Determinantes de salud"]],
+
+["Amalia va a la oficina de farmacia donde trabajas y te pide que le midas la tensión arterial. Te sale el siguiente resultado ¿Qué le debes decir a Amalia?",["A) Amalia tienes hipertensión deberías ir al médico","B) Amalis tienes hipertermia","C) Amalia tienes hipotensión. Espera un ratito, te doy agua y la medimos dentro de un ratito a ver si sigue igual","D) Amalia estás perfectamente"]],
+
+["Para prevenir la resistencia a antibióticos la organización mundial de la salud propone varias medidas dirigidas ¿a cuál de estos grupos?",["A) Todas son correctas","B) Sector agrícola","C) Profesionales de la salud","D) Población general"]],
+
+["Entre las medidas para los planificadores de las políticas que propone la OMS para prevenir la resistencia a antibióticos, se encuentra:",["A) Vacunar a los animales","B) Tomar los antibióticos bajo prescripción","C) Prescribir solamente cuando sea necesario","D) Crear campañas de información"]],
+
+["Ante personas que tienen un hábito tabáquico, la etapa de preparación corresponde con:",["A) El paciente no se plantea un cambio","B) El paciente piensa cómo dejarlo y cuándo hacerlo","C) El paciente se mantiene sin fumar sin esfuerzo","D) El paciente se mantiene sin fumar con esfuerzo"]],
+
+["La cocían qué tipo de droga es según su efecto",["A) Estimulante","B) Depresora","C) Psicodélica","D) Todas las respuestas son correctas"]],
+
+["Un debate entre los tertulianos de un programa de televisión ¿qué tipo de comunicación implica?",["A) Directa","B) Inversa","C) Indirecta","D) Icónica"]],
+
+["¿Qué tipo de sustancia se debe utilizar para desinfectar la materia viva sin dañarla?",["A) Desinfectante","B) Esterilizador","C) Jabón de manos","D) Antiséptico"]],
+
+["Las inmunoglobulinas se caracterizan porque:",["A) Son pruebas que permiten diagnosticar enfermedades e identificar microorganismos","B) Son anticuerpos","C) Son sustancias que provocan una respuesta inmunitaria en el organismo","D) Son antígenos"]],
+
+["Indica cuál de las siguientes células no está presente en la sangre:",["A) Glóbulos rojos","B) Plaquetas","C) Todas las respuestas son células sanguíneas","D) Leucocitos"]],
+
+["Para asegurar su eficacia como equipo de protección individualizada, ¿qué característica debe cumplir una bata?",["A) Debe ajustarse a las muñecas","B) Debe estar reforzada con hilos de nylon","C) Debe ser blanca","D) Debe ser al menos 5 centímetros más larga por la parte posterior que por la anterior"]],
+
+["El hipoclorito sódico:",["A) Es un método químico que elimina todas las formas vegetativas y algunas esporas, por lo tanto, se utiliza para una desinfección alta","B) Es un método físico que elimina todas las formas vegetativas y algunas esporas, por lo tanto, se utiliza para una desinfección baja.","C) Es un método físico que elimina todas las formas vegetativas y algunas esporas, por lo tanto, se utiliza para una desinfección alta","D) Es un método químico que elimina todas las formas vegetativas y algunas esporas, por lo tanto, se utiliza para una desinfección baja"]],
+
+["¿Cuál de cambios aparece durante la menopausia?",["A) Alteraciones del sueño","B) Disminución de la densidad ósea","C) Sudores","D) Todos pueden aparecer"]],
+
+["Provocar de forma intencionada la muerte de un paciente que padece una enfermedad incurable para evitar que sufra",["A) Protanasia","B) Antetanasia","C) Distanasia","D) Eutanasia"]],
+
+["El trastorno psicótico que es secundario a enfermedades como el cáncer o el SIDA se denomina:",["A) Psicosis orgánica","B) Neurosis","C) Fobia","D) Esquizofrenia"]],
+
+["En relación con el envejecimiento, la capacidad de las personas para realizar actividades de la vida diaria sin ayuda se denomina:",["A) Ninguna respuesta es correcta","B) Autonomía","C) Independencia","D) Dependencia"]],
+
+["La angustia es:",["A) Ninguna respuesta es correcta","B) Reacción física de alerta que aumenta el nivel de actividad fisiológica y cognitiva para dar la mejor respuesta a una situación nueva","C) Trastorno de las emociones caracterizado por cambios de humor, tristeza, pensamientos negativos, disminución de la autoestima y fatiga","D) Percepción que no corresponde a ningún estímulo físico externo, o sea es una pseudopercepción"]]
+
+],
+respuestas:["A","D","C","D","C","A","D","B","A","A","D","B","C","A","A","D","D","A","C","B"]
+}
 
 };
 
